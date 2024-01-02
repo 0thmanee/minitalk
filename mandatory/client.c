@@ -40,9 +40,15 @@ void	send_msg(int pid, char *msg){
 		{
 			bit = (c >> j & 1);
 			if (bit == 0)
-				kill(pid, SIGUSR1);
+			{
+				if (kill(pid, SIGUSR1) == -1)
+				ft_printf("Server failed to send SIGUSR1");
+			}
 			else
-				kill(pid, SIGUSR2);
+			{
+				if (kill(pid, SIGUSR2) == -1)
+				ft_printf("Server failed to send SIGUSR2");
+			}
 			usleep(200);
 			j--;
 		}

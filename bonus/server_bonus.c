@@ -22,6 +22,8 @@ void	handler(int signum, siginfo_t *info, void *ucontent)
 	{
 		ft_putchar_fd(c, 1);
 		c = 0;
+		if (kill(info->si_pid, SIGUSR1) == -1)
+				ft_printf("Server failed to send SIGUSR1");
 	}
 }
 

@@ -40,14 +40,36 @@ void	send_msg(int pid, char *msg){
 		{
 			bit = (c >> j & 1);
 			if (bit == 0)
-				kill(pid, SIGUSR1);
+			{
+				if (kill(pid, SIGUSR1) == -1)
+				ft_printf("Client failed to send SIGUSR1");
+			}
 			else
-				kill(pid, SIGUSR2);
+			{
+				if (kill(pid, SIGUSR2) == -1)
+				ft_printf("Client failed to send SIGUSR2");
+			}
 			usleep(200);
 			j--;
 		}
 		i++;
 	}
+}
+
+void	handler(int signum)
+{
+	if(signum == SIGUSR1)
+		ft_printf("\x1b[32m• \x1b[32mMessage Receaved Successufly ");
+}
+
+void	sa_config()
+{
+	struct sigaction	sa;
+	
+	sa.sa_flags = SIGINFO;
+	sa.sa_handler = &handler;
+	if (sigaction(SIGUSR1, &sa, NULL) == -1)
+		ft_printf("Failed to Change Signal's Behavior");
 }
 
 int	main(int ac, char *av[])
@@ -57,5 +79,6 @@ int	main(int ac, char *av[])
 	if (invalid_args(ac, av))
 		return (1);
 	pid = ft_atoi(av[1]);
+	sa_config();
 	send_msg(pid, av[2]);
 }
