@@ -1,6 +1,4 @@
-#include "minitalk.h"
-#include "libft/libft.h"
-#include "ft_printf/ft_printf.h"
+#include "minitalk_bonus.h"
 
 void	handler(int signum, siginfo_t *info, void *ucontent)
 {
@@ -64,6 +62,7 @@ int main(int ac, char *av[])
 {
 	pid_t				pid;
 
+	(void)av;
 	if (ac != 1)
 		return (1);
 	welcome_msg();

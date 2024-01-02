@@ -1,6 +1,4 @@
-#include "minitalk.h"
-#include "libft/libft.h"
-#include "ft_printf/ft_printf.h"
+#include "minitalk_bonus.h"
 
 int	invalid_args(int ac, char *av[])
 {
@@ -54,7 +52,6 @@ void	send_msg(int pid, char *msg){
 
 int	main(int ac, char *av[])
 {
-	char	*msg;
 	pid_t	pid;
 
 	if (invalid_args(ac, av))

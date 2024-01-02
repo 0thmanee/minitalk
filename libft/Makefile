@@ -28,19 +28,19 @@ OBJSB = $(FILESB:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(AR) $@ $^
+	@$(AR) $@ $^
 
 bonus: $(OBJS) $(OBJSB)
-	$(AR) $(NAME) $^
+	@$(AR) $(NAME) $^
 
 %.o: %.c libft.h
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS) $(OBJSB)
+	@$(RM) $(OBJS) $(OBJSB)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
