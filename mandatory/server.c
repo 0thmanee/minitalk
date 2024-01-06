@@ -40,22 +40,8 @@ void	sa_config()
 void	welcome_msg()
 {
 	ft_printf("\x1b[32m");
-	ft_printf(" _____            _____    ____________    _____       __    ____________   \n");
 	usleep(10000);
-	ft_printf("|     \\          /     |  |____    ____|  |     \\     |  |  |____    ____|  \n");
-	usleep(10000);
-	ft_printf("|  |\\  \\        /  /|  |       |  |       |  |\\  \\    |  |       |  |       \n");
-	usleep(10000);
-	ft_printf("|  | \\  \\      /  / |  |       |  |       |  | \\  \\   |  |       |  |       \n");
-	usleep(10000);
-	ft_printf("|  |  \\  \\    /  /  |  |       |  |       |  |  \\  \\  |  |       |  |       \n");
-	usleep(10000);
-	ft_printf("|  |   \\  \\  /  /   |  |       |  |       |  |   \\  \\ |  |       |  |       \n");
-	usleep(10000);
-	ft_printf("|  |    \\  \\/  /    |  |   ____|  |____   |  |    \\  \\|  |   ____|  |____   \n");
-	usleep(10000);
-	ft_printf("|__|     \\____/     |__|  |____________|  |__|     \\_____|  |____________|  \n\n");
-	usleep(10000);
+	ft_printf("%s", INTRO);
 }
 
 int main(int ac, char *av[])
@@ -68,7 +54,7 @@ int main(int ac, char *av[])
 	welcome_msg();
 	pid = getpid();
 	
-	ft_printf("\t\t\t  \x1b[32m• \x1b[32mServer Is Running\n\t\t\t       PID: %d\x1b[0m\n\n", pid);
+	ft_printf("\t\t  \x1b[32m• \x1b[32mServer Is Running\n\t\t       PID: %d\x1b[0m\n\n", pid);
 	while (1)
 		sa_config();
 }
