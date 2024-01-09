@@ -57,3 +57,5 @@ fclean: clean
 	@make -s fclean -C ./libft
 	@make -s fclean -C ./ft_printf
 	@$(RM) $(NAMECLIENT) $(NAMESERVER) $(NAMECLIENTBONUS) $(NAMESERVERBONUS)
+
+re: fclean all

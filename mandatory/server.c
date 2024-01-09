@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/09 14:04:01 by obouchta          #+#    #+#             */
+/*   Updated: 2024/01/09 14:05:07 by obouchta         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 void	handler(int signum, siginfo_t *info, void *ucontent)
@@ -41,7 +53,8 @@ void	welcome_msg()
 {
 	ft_printf("\x1b[32m");
 	usleep(10000);
-	ft_printf("%s", INTRO);
+	ft_printf("%s%s%s%s%s", INTRO1, INTRO2, INTRO3, INTRO4, INTRO5);
+	ft_printf("%s%s%s%s%s\n\n", INTRO6, INTRO7, INTRO8, INTRO9, INTRO10);
 }
 
 int main(int ac, char *av[])
@@ -54,7 +67,7 @@ int main(int ac, char *av[])
 	welcome_msg();
 	pid = getpid();
 	
-	ft_printf("\t\t  \x1b[32m• \x1b[32mServer Is Running\n\t\t       PID: %d\x1b[0m\n\n", pid);
+	ft_printf("\t\t\t  \x1b[32m• \x1b[32mServer Is Running\n\t\t\t       PID: %d\x1b[0m\n\n", pid);
 	while (1)
 		sa_config();
 }

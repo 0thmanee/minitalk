@@ -22,8 +22,9 @@ void	handler(int signum, siginfo_t *info, void *ucontent)
 	{
 		ft_putchar_fd(c, 1);
 		c = 0;
-		if (kill(info->si_pid, SIGUSR1) == -1)
-				ft_printf("Server failed to send SIGUSR1");
+		// if (kill(info->si_pid, SIGUSR1) == -1)
+		// 	ft_printf("Server failed to send SIGUSR1");
+		// return ;
 	}
 }
 
@@ -42,22 +43,9 @@ void	sa_config()
 void	welcome_msg()
 {
 	ft_printf("\x1b[32m");
-	ft_printf(" _____            _____    ____________    _____       __    ____________   \n");
 	usleep(10000);
-	ft_printf("|     \\          /     |  |____    ____|  |     \\     |  |  |____    ____|  \n");
-	usleep(10000);
-	ft_printf("|  |\\  \\        /  /|  |       |  |       |  |\\  \\    |  |       |  |       \n");
-	usleep(10000);
-	ft_printf("|  | \\  \\      /  / |  |       |  |       |  | \\  \\   |  |       |  |       \n");
-	usleep(10000);
-	ft_printf("|  |  \\  \\    /  /  |  |       |  |       |  |  \\  \\  |  |       |  |       \n");
-	usleep(10000);
-	ft_printf("|  |   \\  \\  /  /   |  |       |  |       |  |   \\  \\ |  |       |  |       \n");
-	usleep(10000);
-	ft_printf("|  |    \\  \\/  /    |  |   ____|  |____   |  |    \\  \\|  |   ____|  |____   \n");
-	usleep(10000);
-	ft_printf("|__|     \\____/     |__|  |____________|  |__|     \\_____|  |____________|  \n\n");
-	usleep(10000);
+	ft_printf("%s%s%s%s%s", INTRO1, INTRO2, INTRO3, INTRO4, INTRO5);
+	ft_printf("%s%s%s%s%s\n\n", INTRO6, INTRO7, INTRO8, INTRO9, INTRO10);
 }
 
 int main(int ac, char *av[])
