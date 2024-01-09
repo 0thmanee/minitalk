@@ -58,4 +58,4 @@ fclean: clean
 	@make -s fclean -C ./ft_printf
 	@$(RM) $(NAMECLIENT) $(NAMESERVER) $(NAMECLIENTBONUS) $(NAMESERVERBONUS)
 
-re: fclean all
+re: fclean bonus clean

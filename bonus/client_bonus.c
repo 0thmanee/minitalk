@@ -24,42 +24,10 @@ int	invalid_args(int ac, char *av[])
 	return (0);
 }
 
-void	send_msg(int pid, char *msg){
-	int		i;
-	int		j;
-	char	bit;
-	char	c;
-
-	i = 0;
-	bit = 0;
-	while (msg[i])
-	{
-		j = 7;
-		c = msg[i];
-		while (j >= 0)
-		{
-			bit = (c >> j & 1);
-			if (bit == 0)
-			{
-				if (kill(pid, SIGUSR1) == -1)
-				ft_printf("Client failed to send SIGUSR1");
-			}
-			else
-			{
-				if (kill(pid, SIGUSR2) == -1)
-				ft_printf("Client failed to send SIGUSR2");
-			}
-			usleep(200);
-			j--;
-		}
-		i++;
-	}
-}
-
 void	handler(int signum)
 {
 	if(signum == SIGUSR1)
-		ft_printf("\x1b[32m• \x1b[32mMessage Receaved Successufly ");
+		ft_printf("\x1b[32m• \x1b[32mMessage Receaved Successufly By The Server\n");
 }
 
 void	sa_config()
@@ -70,6 +38,48 @@ void	sa_config()
 	sa.sa_handler = &handler;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		ft_printf("Failed to Change Signal's Behavior");
+}
+
+void	send_msg(int pid, char *msg){
+	int		i;
+	int		j;
+	char	bit;
+	char	c;
+	char	empty;
+
+	i = 0;
+	bit = 0;
+	empty = 0;
+	while (msg[i])
+	{
+		j = 7;
+		c = msg[i];
+		while (j >= 0)
+		{
+			bit = (c >> j & 1);
+			if (bit == 0)
+			{
+				if (kill(pid, SIGUSR1) == -1)
+					ft_printf("Client failed to send SIGUSR1");
+			}
+			else
+			{
+				if (kill(pid, SIGUSR2) == -1)
+					ft_printf("Client failed to send SIGUSR2");
+			}
+			usleep(200);
+			j--;
+		}
+		i++;
+	}
+	j = 7;
+	while (j >= 0)
+	{
+		if (kill(pid, SIGUSR1) == -1)
+			ft_printf("Client failed to send SIGUSR1");
+		usleep(200);
+		j--;
+	}
 }
 
 int	main(int ac, char *av[])

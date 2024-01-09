@@ -13,18 +13,19 @@ void	handler(int signum, siginfo_t *info, void *ucontent)
 		c = 0;
 		pid = info->si_pid;
 	}
-	if (shift_it < 0)
-		shift_it = 7;
 	if (signum == SIGUSR2)
 		c |= (1 << shift_it);
 	shift_it--;
 	if (shift_it < 0)
 	{
+		if (c == 0)
+		{
+			if (kill(info->si_pid, SIGUSR1) == -1)
+				ft_printf("Server failed to send SIGUSR1");
+		}
 		ft_putchar_fd(c, 1);
 		c = 0;
-		// if (kill(info->si_pid, SIGUSR1) == -1)
-		// 	ft_printf("Server failed to send SIGUSR1");
-		// return ;
+		shift_it = 7;
 	}
 }
 
@@ -57,7 +58,6 @@ int main(int ac, char *av[])
 		return (1);
 	welcome_msg();
 	pid = getpid();
-	
 	ft_printf("\t\t\t  \x1b[32m• \x1b[32mServer Is Running\n\t\t\t       PID: %d\x1b[0m\n\n", pid);
 	while (1)
 		sa_config();
