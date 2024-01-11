@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 14:31:07 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/11 23:22:29 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/12 00:34:14 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 long	calc_result(long result, char c)
 {
-	long tmp;
+	long	tmp;
+
 	tmp = (result * 10) + (c - 48);
 	if (tmp < result)
 		return (2147483648);

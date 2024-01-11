@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:44:31 by obouchta          #+#    #+#             */
-/*   Updated: 2023/11/14 13:47:01 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/12 00:33:31 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,3 @@ void	*ft_memmove(void *dest, const void *src, size_t len)
 		ft_memcpy(dest, src, len);
 	return (dest);
 }
-
-
