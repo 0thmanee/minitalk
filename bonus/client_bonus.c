@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/11 19:22:17 by obouchta          #+#    #+#             */
+/*   Updated: 2024/01/12 00:24:11 by obouchta         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk_bonus.h"
 
 int	invalid_args(int ac, char *av[])
@@ -6,15 +18,17 @@ int	invalid_args(int ac, char *av[])
 
 	if (ac != 3)
 	{
-		ft_printf("\x1b[31mYou Must Enter 3 arguments, no less no more :/\n");
+		ft_printf("\x1b[31m3 Arguments are required :/\n");
 		return (1);
 	}
 	i = 0;
+	if (av[1][i] == '+')
+		i++;
 	while (av[1][i])
 	{
 		if (av[1][i] < '0' || av[1][i] > '9')
 		{
-			ft_printf("\x1b[31mYour PID Should Contains Only Digits :~\n");
+			ft_printf("\x1b[31mInvalid PID :~\n");
 			return (1);
 		}
 		i++;
@@ -26,30 +40,32 @@ int	invalid_args(int ac, char *av[])
 
 void	handler(int signum)
 {
-	if(signum == SIGUSR1)
-		ft_printf("\x1b[32m• \x1b[32mMessage Receaved Successufly By The Server\n");
+	if (signum == SIGUSR1)
+	{
+		ft_printf("\x1b[32m• \x1b[32m");
+		ft_printf("Message Receaved Successufly By The Server\n");
+	}
 }
 
-void	sa_config()
+void	sa_config(void)
 {
 	struct sigaction	sa;
-	
+
 	sa.sa_flags = SIGINFO;
 	sa.sa_handler = &handler;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		ft_printf("Failed to Change Signal's Behavior");
 }
 
-void	send_msg(int pid, char *msg){
+void	send_msg(int pid, char *msg)
+{
 	int		i;
 	int		j;
 	char	bit;
 	char	c;
-	char	empty;
 
 	i = 0;
 	bit = 0;
-	empty = 0;
 	while (msg[i])
 	{
 		j = 7;
@@ -57,38 +73,31 @@ void	send_msg(int pid, char *msg){
 		while (j >= 0)
 		{
 			bit = (c >> j & 1);
-			if (bit == 0)
-			{
-				if (kill(pid, SIGUSR1) == -1)
-					ft_printf("Client failed to send SIGUSR1");
-			}
-			else
-			{
-				if (kill(pid, SIGUSR2) == -1)
-					ft_printf("Client failed to send SIGUSR2");
-			}
+			if (!send_sig(bit, pid))
+				return ;
 			usleep(200);
 			j--;
 		}
 		i++;
 	}
-	j = 7;
-	while (j >= 0)
-	{
-		if (kill(pid, SIGUSR1) == -1)
-			ft_printf("Client failed to send SIGUSR1");
-		usleep(200);
-		j--;
-	}
+	send_empty(pid);
 }
 
 int	main(int ac, char *av[])
 {
+	long	old_pid;
 	pid_t	pid;
 
 	if (invalid_args(ac, av))
 		return (1);
-	pid = ft_atoi(av[1]);
+	old_pid = ft_atoi(av[1]);
+	if (old_pid <= 2 || old_pid > INT_MAX || kill(old_pid, 0) == -1)
+	{
+		ft_printf("\x1b[31mInvalid PID :~\n");
+		return (1);
+	}
+	pid = (pid_t)old_pid;
 	sa_config();
 	send_msg(pid, av[2]);
+	return (0);
 }

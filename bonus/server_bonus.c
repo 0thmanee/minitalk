@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/11 19:22:04 by obouchta          #+#    #+#             */
+/*   Updated: 2024/01/11 23:59:58 by obouchta         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk_bonus.h"
 
 void	handler(int signum, siginfo_t *info, void *ucontent)
@@ -29,10 +41,10 @@ void	handler(int signum, siginfo_t *info, void *ucontent)
 	}
 }
 
-void	sa_config()
+void	sa_config(void)
 {
 	struct sigaction	sa;
-	
+
 	sa.sa_flags = SIGINFO;
 	sa.sa_sigaction = &handler;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
@@ -41,7 +53,7 @@ void	sa_config()
 		ft_printf("Failed to Change Signal's Behavior");
 }
 
-void	welcome_msg()
+void	welcome_msg(void)
 {
 	ft_printf("\x1b[32m");
 	usleep(10000);
@@ -49,16 +61,17 @@ void	welcome_msg()
 	ft_printf("%s%s%s%s%s\n\n", INTRO6, INTRO7, INTRO8, INTRO9, INTRO10);
 }
 
-int main(int ac, char *av[])
+int	main(int ac, char *av[])
 {
-	pid_t				pid;
+	pid_t	pid;
 
 	(void)av;
 	if (ac != 1)
 		return (1);
 	welcome_msg();
 	pid = getpid();
-	ft_printf("\t\t\t  \x1b[32m• \x1b[32mServer Is Running\n\t\t\t       PID: %d\x1b[0m\n\n", pid);
+	ft_printf("\t\t\t  \x1b[32m• \x1b[32mServer Is Running");
+	ft_printf("\n\t\t\t       PID: %d\x1b[0m\n\n", pid);
 	while (1)
 		sa_config();
 }

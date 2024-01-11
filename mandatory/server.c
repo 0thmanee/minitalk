@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 14:04:01 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/09 20:43:02 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/11 23:29:40 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	handler(int signum, siginfo_t *info, void *ucontent)
 		c = 0;
 		pid = info->si_pid;
 	}
-	if (shift_it < 0)
-		shift_it = 7;
 	if (signum == SIGUSR2)
 		c |= (1 << shift_it);
 	shift_it--;
@@ -34,13 +32,14 @@ void	handler(int signum, siginfo_t *info, void *ucontent)
 	{
 		ft_putchar_fd(c, 1);
 		c = 0;
+		shift_it = 7;
 	}
 }
 
-void	sa_config()
+void	sa_config(void)
 {
 	struct sigaction	sa;
-	
+
 	sa.sa_flags = SIGINFO;
 	sa.sa_sigaction = &handler;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
@@ -49,7 +48,7 @@ void	sa_config()
 		ft_printf("Failed to Change Signal's Behavior");
 }
 
-void	welcome_msg()
+void	welcome_msg(void)
 {
 	ft_printf("\x1b[32m");
 	usleep(10000);
@@ -57,7 +56,7 @@ void	welcome_msg()
 	ft_printf("%s%s%s%s%s\n\n", INTRO6, INTRO7, INTRO8, INTRO9, INTRO10);
 }
 
-int main(int ac, char *av[])
+int	main(int ac, char *av[])
 {
 	pid_t				pid;
 
@@ -66,8 +65,8 @@ int main(int ac, char *av[])
 		return (1);
 	welcome_msg();
 	pid = getpid();
-	
-	ft_printf("\t\t\t  \x1b[32m• \x1b[32mServer Is Running\n\t\t\t       PID: %d\x1b[0m\n\n", pid);
+	ft_printf("\t\t\t  \x1b[32m• \x1b[32mServer Is Running");
+	ft_printf("\n\t\t\t       PID: %d\x1b[0m\n\n", pid);
 	while (1)
 		sa_config();
 }
