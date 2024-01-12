@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:22:42 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/11 23:31:49 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/12 01:03:44 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	send_msg(int pid, char *msg)
 			bit = (c >> j & 1);
 			if (!send_sig(bit, pid))
 				return ;
-			usleep(200);
+			usleep(100);
 			j--;
 		}
 	}

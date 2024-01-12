@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:22:17 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/12 00:24:11 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/12 01:03:31 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	sa_config(void)
 {
 	struct sigaction	sa;
 
+	sigemptyset(&sa.sa_mask);
+	sigaddset(&sa.sa_mask, SIGUSR1);
 	sa.sa_flags = SIGINFO;
 	sa.sa_handler = &handler;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
@@ -75,7 +77,7 @@ void	send_msg(int pid, char *msg)
 			bit = (c >> j & 1);
 			if (!send_sig(bit, pid))
 				return ;
-			usleep(200);
+			usleep(100);
 			j--;
 		}
 		i++;

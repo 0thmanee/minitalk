@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:22:04 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/12 00:32:25 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/12 00:56:30 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ void	sa_config(void)
 {
 	struct sigaction	sa;
 
-	sa.sa_flags = SIGINFO;
+	sigemptyset(&sa.sa_mask);
+	sigaddset(&sa.sa_mask, SIGUSR1);
+	sigaddset(&sa.sa_mask, SIGUSR2);
+	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = &handler;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		ft_printf("Failed to Change Signal's Behavior");
