@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/obouchta/Desktop/minitalk",
-      "program": "/Users/obouchta/Desktop/minitalk/build/Debug/outDebug"
+      "cwd": "/Users/obouchta/Desktop/minitalk/mandatory",
+      "program": "/Users/obouchta/Desktop/minitalk/mandatory/build/Debug/outDebug"
     }
   ]
 }

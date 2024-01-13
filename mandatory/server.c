@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 14:04:01 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/12 22:38:12 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/13 21:03:57 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	sa_config(void)
 {
 	struct sigaction	sa;
 
-	
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = &handler;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
