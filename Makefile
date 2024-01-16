@@ -5,7 +5,7 @@ AR = ar rc
 PRINTF = ft_printf/libftprintf.a
 
 NAMECLIENT = client
-CCLIENT = ./mandatory/client.c
+CCLIENT = ./mandatory/client.c ./mandatory/tools.c
 OBJCLIENT = $(CCLIENT:.c=.o)
 HEADERMAND = ./mandatory/minitalk.h
 
