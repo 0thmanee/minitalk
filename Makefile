@@ -1,11 +1,11 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
-LIBFT = ./libft/libft.a
-PRINTF = ./ft_printf/libftprintf.a
+AR = ar rc
+PRINTF = ft_printf/libftprintf.a
 
 NAMECLIENT = client
-CCLIENT = ./mandatory/client.c
+CCLIENT = ./mandatory/client.c ./mandatory/tools.c
 OBJCLIENT = $(CCLIENT:.c=.o)
 HEADERMAND = ./mandatory/minitalk.h
 
@@ -16,31 +16,37 @@ OBJSERVER = $(CSERVER:.c=.o)
 NAMECLIENTBONUS = client_bonus
 CCLIENTBONUS = ./bonus/client_bonus.c ./bonus/tools_bonus.c
 OBJCLIENTBONUS = $(CCLIENTBONUS:.c=.o)
-HEADERBONUS = ./bonus/minitalk_bonus.h
 
 NAMESERVERBONUS = server_bonus
 CSERVERBONUS = ./bonus/server_bonus.c
 OBJSERVERBONUS = $(CSERVERBONUS:.c=.o)
+HEADERBONUS = ./bonus/minitalk_bonus.h
 
-LIBS = $(LIBFT) $(PRINTF)
+CPRINTF = ./ft_printf/ft_printf.c ./ft_printf/ft_printc.c ./ft_printf/ft_prints.c ./ft_printf/ft_printd.c ./ft_printf/ft_printu.c ./ft_printf/ft_printp.c ./ft_printf/ft_printx.c
+OBJPRINTF = $(CPRINTF:.c=.o)
 
-all: $(LIBFT) $(PRINTF) $(NAMECLIENT) $(NAMESERVER)
+all: $(NAMECLIENT) $(NAMESERVER)
 
-bonus: $(LIBFT) $(PRINTF) $(NAMECLIENTBONUS) $(NAMESERVERBONUS)
+bonus: $(NAMECLIENTBONUS) $(NAMESERVERBONUS)
 
-$(LIBFT):
-	@make -C ./libft
-
-$(PRINTF):
-	@make -C ./ft_printf
-
-$(NAMECLIENT): $(OBJCLIENT)
-	@$(CC) $(CFLAGS) $(OBJCLIENT) $(LIBS) -o $(NAMECLIENT)
+$(NAMECLIENT): $(OBJCLIENT) $(OBJPRINTF)
+	@$(CC) $(CFLAGS) $^ -o $@
 	@printf "\033[32m[ ✔ ] %s\n\033[0m" "Client created"
 
-$(NAMESERVER): $(OBJSERVER)
-	@$(CC) $(CFLAGS) $(OBJSERVER) $(LIBS) -o $(NAMESERVER)
+$(NAMESERVER): $(OBJSERVER) $(OBJPRINTF)
+	@$(CC) $(CFLAGS) $^ -o $@
 	@printf "\033[32m[ ✔ ] %s\n\033[0m" "Server created"
+
+$(NAMECLIENTBONUS): $(OBJCLIENTBONUS) $(OBJPRINTF)
+	@$(CC) $(CFLAGS) $^ -o $@
+	@printf "\033[32m[ ✔ ] %s\n\033[0m" "Clientbonus created"
+
+$(NAMESERVERBONUS): $(OBJSERVERBONUS) $(OBJPRINTF)
+	@$(CC) $(CFLAGS) $^ -o $@
+	@printf "\033[32m[ ✔ ] %s\n\033[0m" "Serverbonus created"
+
+ft_printf/%.o: ft_printf/%.c $(HEADERMAND) $(HEADERBONUS)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 mandatory/%.o: mandatory/%.c $(HEADERMAND)
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -48,21 +54,12 @@ mandatory/%.o: mandatory/%.c $(HEADERMAND)
 bonus/%.o: bonus/%.c $(HEADERBONUS)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAMECLIENTBONUS): $(OBJCLIENTBONUS)
-	@$(CC) $(CFLAGS) $(OBJCLIENTBONUS) $(LIBS) -o $(NAMECLIENTBONUS)
-	@printf "\033[32m[ ✔ ] %s\n\033[0m" "Clientbonus created"
-
-$(NAMESERVERBONUS): $(OBJSERVERBONUS)
-	@$(CC) $(CFLAGS) $(OBJSERVERBONUS) $(LIBS) -o $(NAMESERVERBONUS)
-	@printf "\033[32m[ ✔ ] %s\n\033[0m" "Serverbonus created"
-
 clean:
-	@$(RM) $(OBJCLIENT) $(OBJSERVER) $(OBJCLIENTBONUS) $(OBJSERVERBONUS) libft/*.o ft_printf/*.o
+	@$(RM) $(OBJCLIENT) $(OBJSERVER) $(OBJCLIENTBONUS) $(OBJSERVERBONUS) $(OBJPRINTF)
 
 fclean: clean
-	@$(RM) $(NAMECLIENT) $(NAMESERVER) $(NAMECLIENTBONUS) $(NAMESERVERBONUS) $(LIBFT) $(PRINTF)
-	@make -s fclean -C ./libft
-	@make -s fclean -C ./ft_printf
+	@$(RM) $(NAMECLIENT) $(NAMESERVER) $(NAMECLIENTBONUS) $(NAMESERVERBONUS) $(PRINTF)
+	@printf "\033[32m[ ✔ ] %s\n\033[0m" "Cleaining done"
 
 re: fclean all
 

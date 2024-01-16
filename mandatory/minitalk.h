@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 16:24:15 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/11 23:30:45 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:13:23 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,18 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <limits.h>
-# include "../libft/libft.h"
-# include "../ft_printf/ft_printf.h"
+# include <stdarg.h>
+
+long	ft_atoi(const char *str);
+int		ft_printf(const char	*str, ...);
+int		ft_format(va_list args, char c);
+int		ft_printc(char c);
+int		ft_prints(char *s);
+int		ft_printd(int d);
+int		ft_printu(int d);
+int		ft_printbase(unsigned long d2, char *base);
+int		ft_printp(void *d, char *base);
+int		ft_printx(unsigned int x, char c);
 
 # define INTRO1 "\n\n\t               /$$           /$$   /$$               /$$"
 # define INTRO2 " /$$      \n\t              |__/          |__/  | $$          "

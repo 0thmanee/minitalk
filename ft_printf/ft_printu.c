@@ -6,11 +6,11 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 12:49:20 by obouchta          #+#    #+#             */
-/*   Updated: 2023/11/14 22:41:13 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/16 18:08:24 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../mandatory/minitalk.h"
 
 static int	ft_putnbr(unsigned int d)
 {

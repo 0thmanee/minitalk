@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:22:04 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/12 00:56:30 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/16 18:56:33 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	handler(int signum, siginfo_t *info, void *ucontent)
 			if (kill(info->si_pid, SIGUSR1) == -1)
 				ft_printf("Server failed to send SIGUSR1");
 		}
-		ft_putchar_fd(c, 1);
+		ft_printf("%c", c);
 		c = 0;
 		shift_it = 7;
 	}

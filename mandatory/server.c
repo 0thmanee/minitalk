@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 14:04:01 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/13 21:03:57 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/16 18:08:46 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	handler(int signum, siginfo_t *info, void *ucontent)
 	shift_it--;
 	if (shift_it < 0)
 	{
-		ft_putchar_fd(c, 1);
+		ft_printf("%c", c);
 		c = 0;
 		shift_it = 7;
 	}

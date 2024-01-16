@@ -6,11 +6,11 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 22:37:54 by obouchta          #+#    #+#             */
-/*   Updated: 2023/11/14 10:20:26 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/16 18:08:21 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../mandatory/minitalk.h"
 
 int	ft_prints(char *s)
 {

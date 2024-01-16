@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:22:25 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/12 00:32:56 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:16:59 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@
 # include <signal.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "../libft/libft.h"
-# include "../ft_printf/ft_printf.h"
+# include <limits.h>
+
+int		send_sig(int bit, int pid);
+void	send_empty(int pid);
+long	ft_atoi(const char *str);
+int		ft_printf(const char *format, ...);
 
 # define INTRO1 "\n\n\t               /$$           /$$   /$$               /$$"
 # define INTRO2 " /$$      \n\t              |__/          |__/  | $$          "
@@ -30,8 +34,5 @@
 # define INTRO8 "| $$ | $$| $$| $$  | $$| $$  |  $$$$/|  $$$$$$$| $$| $$ \\  $$"
 # define INTRO9 "\n\t|__/ |__/ |__/|__/|__/  |__/|__/   \\___/   \\_______/|__/"
 # define INTRO10 "|__/  \\__/\n"
-
-int		send_sig(int bit, int pid);
-void	send_empty(int pid);
 
 #endif

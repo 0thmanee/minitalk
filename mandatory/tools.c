@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 14:31:07 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/12 00:34:14 by obouchta         ###   ########.fr       */
+/*   Created: 2024/01/16 17:47:08 by obouchta          #+#    #+#             */
+/*   Updated: 2024/01/16 18:06:20 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minitalk.h"
 
-long	calc_result(long result, char c)
+long calc_result(long result, char c)
 {
 	long	tmp;
 
