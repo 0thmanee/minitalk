@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:22:25 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/16 19:16:59 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:58:45 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <limits.h>
 
+void	*ft_memset(void *ptr, int value, size_t num);
 int		send_sig(int bit, int pid);
 void	send_empty(int pid);
 long	ft_atoi(const char *str);

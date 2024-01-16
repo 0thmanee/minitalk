@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 23:50:58 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/16 18:54:45 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:56:44 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,19 @@ long	ft_atoi(const char *str)
 		i++;
 	}
 	return (result);
+}
+
+void	*ft_memset(void *ptr, int value, size_t num)
+{
+	size_t			i;
+	unsigned char	*ptr2;
+
+	ptr2 = (unsigned char *)ptr;
+	i = 0;
+	while (i < num)
+	{
+		ptr2[i] = (unsigned char)value;
+		i++;
+	}
+	return (ptr);
 }

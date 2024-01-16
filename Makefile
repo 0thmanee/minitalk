@@ -5,22 +5,22 @@ AR = ar rc
 PRINTF = ft_printf/libftprintf.a
 
 NAMECLIENT = client
-CCLIENT = ./mandatory/client.c ./mandatory/tools.c
+CCLIENT = ./mandatory/client.c
 OBJCLIENT = $(CCLIENT:.c=.o)
 HEADERMAND = ./mandatory/minitalk.h
 
 NAMESERVER = server
-CSERVER = ./mandatory/server.c
+CSERVER = ./mandatory/server.c ./mandatory/tools.c
 OBJSERVER = $(CSERVER:.c=.o)
 
 NAMECLIENTBONUS = client_bonus
 CCLIENTBONUS = ./bonus/client_bonus.c ./bonus/tools_bonus.c
 OBJCLIENTBONUS = $(CCLIENTBONUS:.c=.o)
+HEADERBONUS = ./bonus/minitalk_bonus.h
 
 NAMESERVERBONUS = server_bonus
-CSERVERBONUS = ./bonus/server_bonus.c
+CSERVERBONUS = ./bonus/server_bonus.c ./bonus/tools_bonus.c
 OBJSERVERBONUS = $(CSERVERBONUS:.c=.o)
-HEADERBONUS = ./bonus/minitalk_bonus.h
 
 CPRINTF = ./ft_printf/ft_printf.c ./ft_printf/ft_printc.c ./ft_printf/ft_prints.c ./ft_printf/ft_printd.c ./ft_printf/ft_printu.c ./ft_printf/ft_printp.c ./ft_printf/ft_printx.c
 OBJPRINTF = $(CPRINTF:.c=.o)

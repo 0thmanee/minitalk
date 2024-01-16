@@ -6,17 +6,46 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:22:04 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/16 18:56:33 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/16 20:00:11 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
+
+void	check_unicode(unsigned char *c, int *shift_it, int *uni_bytes, int *i)
+{
+	static char	*str;
+	
+	if (*shift_it < 0)
+	{
+		if (*c >= 240)
+			*uni_bytes = 4;
+		else if (*c >= 224)
+			*uni_bytes = 3;
+		else if (*c >= 192)
+			*uni_bytes = 2;
+		else
+			*uni_bytes = 1;
+		(*i)++;
+		str[*i] = *c;
+		if (*i == *uni_bytes)
+		{
+			ft_printf("%s", str);
+			*i = 0;
+			ft_memset(str, 0, 4);
+		}
+		c = 0;
+		*shift_it = 7;
+	}
+}
 
 void	handler(int signum, siginfo_t *info, void *ucontent)
 {
 	static unsigned char	c;
 	static int				shift_it = 7;
 	static pid_t			pid;
+	static int				uni_bytes;
+	static int				i;
 
 	(void)ucontent;
 	if (info->si_pid != pid)
@@ -28,24 +57,20 @@ void	handler(int signum, siginfo_t *info, void *ucontent)
 	if (signum == SIGUSR2)
 		c |= (1 << shift_it);
 	shift_it--;
-	if (shift_it < 0)
+	if (c == 0)
 	{
-		if (c == 0)
-		{
-			if (kill(info->si_pid, SIGUSR1) == -1)
-				ft_printf("Server failed to send SIGUSR1");
-		}
-		ft_printf("%c", c);
-		c = 0;
-		shift_it = 7;
+		if (kill(info->si_pid, SIGUSR1) == -1)
+			ft_printf("Server failed to send SIGUSR1");
 	}
+	check_unicode(&c, &shift_it, &uni_bytes, &i);
 }
 
 void	sa_config(void)
 {
 	struct sigaction	sa;
 
-	sigemptyset(&sa.sa_mask);
+	if (sigemptyset(&sa.sa_mask) == -1)
+		ft_printf("Failed to Change Signal's Behavior");
 	sigaddset(&sa.sa_mask, SIGUSR1);
 	sigaddset(&sa.sa_mask, SIGUSR2);
 	sa.sa_flags = SA_SIGINFO;
