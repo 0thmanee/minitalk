@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:22:17 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/16 19:16:36 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/19 16:44:51 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	invalid_args(int ac, char *av[])
 	return (0);
 }
 
-void	handler(int signum)
+void	handler_c(int signum)
 {
 	if (signum == SIGUSR1)
 	{
@@ -54,7 +54,7 @@ void	sa_config(void)
 	sigemptyset(&sa.sa_mask);
 	sigaddset(&sa.sa_mask, SIGUSR1);
 	sa.sa_flags = SIGINFO;
-	sa.sa_handler = &handler;
+	sa.sa_handler = &handler_c;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		ft_printf("Failed to Change Signal's Behavior");
 }

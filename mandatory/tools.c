@@ -6,13 +6,13 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 17:47:08 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/16 19:58:28 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/19 15:17:42 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-long calc_result(long result, char c)
+long	calc_result(long result, char c)
 {
 	long	tmp;
 

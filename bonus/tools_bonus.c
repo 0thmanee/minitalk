@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 23:50:58 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/16 19:56:44 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/19 16:48:16 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,19 @@ void	send_empty(int pid)
 	}
 }
 
-long calc_result(long result, char c)
+void	welcome_msg(void)
 {
-	long	tmp;
-
-	tmp = (result * 10) + (c - 48);
-	if (tmp < result)
-		return (2147483648);
-	return (tmp);
+	ft_printf("\x1b[32m");
+	usleep(10000);
+	ft_printf("%s%s%s%s%s", INTRO1, INTRO2, INTRO3, INTRO4, INTRO5);
+	ft_printf("%s%s%s%s%s\n\n", INTRO6, INTRO7, INTRO8, INTRO9, INTRO10);
 }
 
 long	ft_atoi(const char *str)
 {
 	int		i;
 	long	result;
+	long	tmp;
 
 	i = 0;
 	result = 0;
@@ -70,7 +69,10 @@ long	ft_atoi(const char *str)
 		i++;
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
-		result = calc_result(result, str[i]);
+		tmp = (result * 10) + (str[i] - 48);
+		if (tmp < result)
+			return (2147483648);
+		result = tmp;
 		i++;
 	}
 	return (result);

@@ -19,7 +19,7 @@ OBJCLIENTBONUS = $(CCLIENTBONUS:.c=.o)
 HEADERBONUS = ./bonus/minitalk_bonus.h
 
 NAMESERVERBONUS = server_bonus
-CSERVERBONUS = ./bonus/server_bonus.c ./bonus/tools_bonus.c
+CSERVERBONUS = ./bonus/server_bonus.c ./bonus/tools_bonus.c ./bonus/tools2_bonus.c
 OBJSERVERBONUS = $(CSERVERBONUS:.c=.o)
 
 CPRINTF = ./ft_printf/ft_printf.c ./ft_printf/ft_printc.c ./ft_printf/ft_prints.c ./ft_printf/ft_printd.c ./ft_printf/ft_printu.c ./ft_printf/ft_printp.c ./ft_printf/ft_printx.c
