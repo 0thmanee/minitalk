@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 23:50:58 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/19 16:48:16 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/21 02:50:29 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,13 @@ void	send_empty(int pid)
 	{
 		if (kill(pid, SIGUSR1) == -1)
 			ft_printf("Client failed to send SIGUSR1");
-		usleep(200);
+		usleep(100);
 		j--;
 	}
 }
 
 void	welcome_msg(void)
 {
-	ft_printf("\x1b[32m");
 	usleep(10000);
 	ft_printf("%s%s%s%s%s", INTRO1, INTRO2, INTRO3, INTRO4, INTRO5);
 	ft_printf("%s%s%s%s%s\n\n", INTRO6, INTRO7, INTRO8, INTRO9, INTRO10);

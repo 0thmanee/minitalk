@@ -31,19 +31,15 @@ bonus: $(NAMECLIENTBONUS) $(NAMESERVERBONUS)
 
 $(NAMECLIENT): $(OBJCLIENT) $(OBJPRINTF)
 	@$(CC) $(CFLAGS) $^ -o $@
-	@printf "\033[32m[ ✔ ] %s\n\033[0m" "Client created"
 
 $(NAMESERVER): $(OBJSERVER) $(OBJPRINTF)
 	@$(CC) $(CFLAGS) $^ -o $@
-	@printf "\033[32m[ ✔ ] %s\n\033[0m" "Server created"
 
 $(NAMECLIENTBONUS): $(OBJCLIENTBONUS) $(OBJPRINTF)
 	@$(CC) $(CFLAGS) $^ -o $@
-	@printf "\033[32m[ ✔ ] %s\n\033[0m" "Clientbonus created"
 
 $(NAMESERVERBONUS): $(OBJSERVERBONUS) $(OBJPRINTF)
 	@$(CC) $(CFLAGS) $^ -o $@
-	@printf "\033[32m[ ✔ ] %s\n\033[0m" "Serverbonus created"
 
 ft_printf/%.o: ft_printf/%.c $(HEADERMAND) $(HEADERBONUS)
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -59,7 +55,6 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAMECLIENT) $(NAMESERVER) $(NAMECLIENTBONUS) $(NAMESERVERBONUS) $(PRINTF)
-	@printf "\033[32m[ ✔ ] %s\n\033[0m" "Cleaining done"
 
 re: fclean all
 

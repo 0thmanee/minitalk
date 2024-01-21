@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 14:04:01 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/16 18:08:46 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/21 02:28:54 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ void	sa_config(void)
 {
 	struct sigaction	sa;
 
+	sigemptyset(&sa.sa_mask);
+	sigaddset(&sa.sa_mask, SIGUSR1);
+	sigaddset(&sa.sa_mask, SIGUSR2);
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = &handler;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
@@ -50,7 +53,6 @@ void	sa_config(void)
 
 void	welcome_msg(void)
 {
-	ft_printf("\x1b[32m");
 	usleep(10000);
 	ft_printf("%s%s%s%s%s", INTRO1, INTRO2, INTRO3, INTRO4, INTRO5);
 	ft_printf("%s%s%s%s%s\n\n", INTRO6, INTRO7, INTRO8, INTRO9, INTRO10);
@@ -65,8 +67,8 @@ int	main(int ac, char *av[])
 		return (1);
 	welcome_msg();
 	pid = getpid();
-	ft_printf("\t\t\t  \x1b[32m• \x1b[32mServer Is Running");
-	ft_printf("\n\t\t\t       PID: %d\x1b[0m\n\n", pid);
+	ft_printf("\t\t\t  Server Is Running");
+	ft_printf("\n\t\t\t       PID: %d\n\n", pid);
 	while (1)
 		sa_config();
 }

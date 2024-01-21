@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:22:17 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/19 16:44:51 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/21 03:03:17 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	invalid_args(int ac, char *av[])
 
 	if (ac != 3)
 	{
-		ft_printf("\x1b[31m3 Arguments are required :/\n");
+		ft_printf("3 Arguments are required :/\n");
 		return (1);
 	}
 	i = 0;
@@ -28,7 +28,7 @@ int	invalid_args(int ac, char *av[])
 	{
 		if (av[1][i] < '0' || av[1][i] > '9')
 		{
-			ft_printf("\x1b[31mInvalid PID :~\n");
+			ft_printf("Invalid PID :~\n");
 			return (1);
 		}
 		i++;
@@ -41,10 +41,7 @@ int	invalid_args(int ac, char *av[])
 void	handler_c(int signum)
 {
 	if (signum == SIGUSR1)
-	{
-		ft_printf("\x1b[32m• \x1b[32m");
 		ft_printf("Message Receaved Successufly By The Server\n");
-	}
 }
 
 void	sa_config(void)
@@ -53,7 +50,8 @@ void	sa_config(void)
 
 	sigemptyset(&sa.sa_mask);
 	sigaddset(&sa.sa_mask, SIGUSR1);
-	sa.sa_flags = SIGINFO;
+	sigaddset(&sa.sa_mask, SIGUSR2);
+	sa.sa_flags = SA_SIGINFO;
 	sa.sa_handler = &handler_c;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		ft_printf("Failed to Change Signal's Behavior");
@@ -77,7 +75,7 @@ void	send_msg(int pid, char *msg)
 			bit = (c >> j & 1);
 			if (!send_sig(bit, pid))
 				return ;
-			usleep(200);
+			usleep(100);
 			j--;
 		}
 		i++;
@@ -89,13 +87,17 @@ int	main(int ac, char *av[])
 {
 	long	old_pid;
 	pid_t	pid;
+	int		len;
 
 	if (invalid_args(ac, av))
 		return (1);
+	len = 0;
+	while (av[1][len])
+		len++;
 	old_pid = ft_atoi(av[1]);
-	if (old_pid <= 2 || old_pid > INT_MAX || kill(old_pid, 0) == -1)
+	if (len > 18 || old_pid <= 2 || old_pid > INT_MAX || kill(old_pid, 0) == -1)
 	{
-		ft_printf("\x1b[31mInvalid PID :~\n");
+		ft_printf("Invalid PID :~\n");
 		return (1);
 	}
 	pid = (pid_t)old_pid;

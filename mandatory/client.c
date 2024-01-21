@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:22:42 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/16 19:17:06 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/21 03:04:24 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	invalid_args(int ac, char *av[])
 
 	if (ac != 3)
 	{
-		ft_printf("\x1b[31m3 Arguments are required :/\n");
+		ft_printf("3 Arguments are required :/\n");
 		return (1);
 	}
 	i = 0;
@@ -28,7 +28,7 @@ int	invalid_args(int ac, char *av[])
 	{
 		if (av[1][i] < '0' || av[1][i] > '9')
 		{
-			ft_printf("\x1b[31mInvalid PID :~\n");
+			ft_printf("Invalid PID :~\n");
 			return (1);
 		}
 		i++;
@@ -87,13 +87,17 @@ int	main(int ac, char *av[])
 {
 	long	old_pid;
 	pid_t	pid;
+	int		len;
 
 	if (invalid_args(ac, av))
 		return (1);
+	len = 0;
+	while (av[1][len])
+		len++;
 	old_pid = ft_atoi(av[1]);
-	if (old_pid <= 2 || old_pid > INT_MAX || kill(old_pid, 0) == -1)
+	if (len > 18 || old_pid <= 2 || old_pid > INT_MAX || kill(old_pid, 0) == -1)
 	{
-		ft_printf("\x1b[31mInvalid PID :~\n");
+		ft_printf("Invalid PID :~\n");
 		return (1);
 	}
 	pid = (pid_t)old_pid;
