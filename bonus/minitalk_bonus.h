@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:22:25 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/19 16:45:02 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/28 11:44:18 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 
 # include <unistd.h>
 # include <signal.h>
-# include <stdlib.h>
-# include <stdio.h>
 # include <limits.h>
+# include <stdarg.h>
 
 int		send_sig(int bit, int pid);
 void	send_empty(int pid);

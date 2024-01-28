@@ -6,7 +6,7 @@
 /*   By: obouchta <obouchta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 16:24:15 by obouchta          #+#    #+#             */
-/*   Updated: 2024/01/16 19:58:33 by obouchta         ###   ########.fr       */
+/*   Updated: 2024/01/28 11:43:52 by obouchta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <unistd.h>
 # include <signal.h>
-# include <stdlib.h>
-# include <stdio.h>
 # include <limits.h>
 # include <stdarg.h>
 

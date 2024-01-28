@@ -4,7 +4,7 @@ RM = rm -f
 AR = ar rc
 PRINTF = ft_printf/libftprintf.a
 
-NAMECLIENT = client
+NAME = client
 CCLIENT = ./mandatory/client.c ./mandatory/tools.c
 OBJCLIENT = $(CCLIENT:.c=.o)
 HEADERMAND = ./mandatory/minitalk.h
@@ -13,7 +13,7 @@ NAMESERVER = server
 CSERVER = ./mandatory/server.c ./mandatory/tools.c
 OBJSERVER = $(CSERVER:.c=.o)
 
-NAMECLIENTBONUS = client_bonus
+NAMEBONUS = client_bonus
 CCLIENTBONUS = ./bonus/client_bonus.c ./bonus/tools_bonus.c
 OBJCLIENTBONUS = $(CCLIENTBONUS:.c=.o)
 HEADERBONUS = ./bonus/minitalk_bonus.h
@@ -25,17 +25,17 @@ OBJSERVERBONUS = $(CSERVERBONUS:.c=.o)
 CPRINTF = ./ft_printf/ft_printf.c ./ft_printf/ft_printc.c ./ft_printf/ft_prints.c ./ft_printf/ft_printd.c ./ft_printf/ft_printu.c ./ft_printf/ft_printp.c ./ft_printf/ft_printx.c
 OBJPRINTF = $(CPRINTF:.c=.o)
 
-all: $(NAMECLIENT) $(NAMESERVER)
+all: $(NAME) $(NAMESERVER)
 
-bonus: $(NAMECLIENTBONUS) $(NAMESERVERBONUS)
+bonus: $(NAMEBONUS) $(NAMESERVERBONUS)
 
-$(NAMECLIENT): $(OBJCLIENT) $(OBJPRINTF)
+$(NAME): $(OBJCLIENT) $(OBJPRINTF)
 	@$(CC) $(CFLAGS) $^ -o $@
 
 $(NAMESERVER): $(OBJSERVER) $(OBJPRINTF)
 	@$(CC) $(CFLAGS) $^ -o $@
 
-$(NAMECLIENTBONUS): $(OBJCLIENTBONUS) $(OBJPRINTF)
+$(NAMEBONUS): $(OBJCLIENTBONUS) $(OBJPRINTF)
 	@$(CC) $(CFLAGS) $^ -o $@
 
 $(NAMESERVERBONUS): $(OBJSERVERBONUS) $(OBJPRINTF)
@@ -54,7 +54,7 @@ clean:
 	@$(RM) $(OBJCLIENT) $(OBJSERVER) $(OBJCLIENTBONUS) $(OBJSERVERBONUS) $(OBJPRINTF)
 
 fclean: clean
-	@$(RM) $(NAMECLIENT) $(NAMESERVER) $(NAMECLIENTBONUS) $(NAMESERVERBONUS) $(PRINTF)
+	@$(RM) $(NAME) $(NAMESERVER) $(NAMEBONUS) $(NAMESERVERBONUS) $(PRINTF)
 
 re: fclean all
 
